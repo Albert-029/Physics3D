@@ -150,5 +150,117 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+void ModulePlayer::CameraToPlayer()
+{
+	newCarPos = vehicle->vehicle->getChassisWorldTransform();
 
+	initialCarPos =
+	{
+		newCarPos.getOrigin().getX(),
+		newCarPos.getOrigin().getY(),
+		newCarPos.getOrigin().getZ()
+	};
 
+	newCarDirection =
+	{
+		newCarPos.getBasis().getColumn(2).getX(),
+		newCarPos.getBasis().getColumn(2).getY(),
+		newCarPos.getBasis().getColumn(2).getZ()
+	};
+
+	App->camera->Position.x = newCameraPos.x;
+	App->camera->Position.y = newCameraPos.y;
+	App->camera->Position.z = newCameraPos.z;
+
+	newCameraPos = initialCarPos - 9 * newCarDirection;
+	App->camera->Position.y = initialCarPos.y + 6;
+
+}
+
+void ModulePlayer::MySetPos(vec3 newPos)
+{
+	vehicle->SetPos(newPos.x, newPos.y, newPos.z);
+}
+
+void ModulePlayer::Respawn(vec3 respawn_pos)
+{
+	MySetPos(respawn_pos);
+	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
+	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+
+}
+
+void ModulePlayer::ChooseMatrix(int num)
+{
+	if (num == 1)
+	{
+		checkpoint1Matrix = mat4x4
+		(1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			380, 2, 25, 0);
+
+		vehicle->SetTransform(checkpoint1Matrix.M);
+	}
+
+	else if (num == 2)
+	{
+		checkpoint2Matrix = mat4x4
+		(1, 0, 180, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			182, 2, -65, 0);
+
+		vehicle->SetTransform(checkpoint2Matrix.M);
+	}
+	else if (num == 3)
+	{
+		checkpoint3Matrix = mat4x4
+		(1, 0, 4, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			-205, 2, -117, 0);
+
+		vehicle->SetTransform(checkpoint3Matrix.M);
+	}
+	else if (num == 4)
+	{
+		checkpoint4Matrix = mat4x4
+		(1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			-260, 2, 270, 0);
+
+		vehicle->SetTransform(checkpoint4Matrix.M);
+	}
+	else if (num == 5)
+	{
+		checkpoint5Matrix = mat4x4
+		(1, 0, 0, 0,
+			0, 1, 0, 0,
+			4, 0, 1, 0,
+			264, 2, 107, 0);
+
+		vehicle->SetTransform(checkpoint5Matrix.M);
+	}
+	else if (num == 6)
+	{
+		checkpoint6Matrix = mat4x4
+		(1, 0, 180, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			317, 2, -225, 0);
+
+		vehicle->SetTransform(checkpoint6Matrix.M);
+	}
+	else if (num == 7)
+	{
+		checkpoint7Matrix = mat4x4
+		(1, 0, 0, 0,
+			0, 1, 0, 0,
+			4, 0, 1, 0,
+			-150, 2, -263, 0);
+
+		vehicle->SetTransform(checkpoint7Matrix.M);
+	}
+}

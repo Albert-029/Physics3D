@@ -18,12 +18,17 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	void ChangeCamera(bool followCamera, bool mapCamera);
+	bool followCamera = false;
+	bool mapCamera = false;
+
+	vec3 followRef;
 private:
 
 	void CalculateViewMatrix();
 
 public:
-	
+
 	vec3 X, Y, Z, Position, Reference;
 
 private:
