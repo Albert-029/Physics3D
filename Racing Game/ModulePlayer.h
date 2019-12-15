@@ -25,14 +25,15 @@ public:
 	void MySetPos(vec3 newPos);
 	void Respawn(vec3 respawn_pos);
 
-	void ChooseMatrix(int num);
-
 public:
 
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
 	float brake;
+
+	float CarPosX;
+	float CarPosZ;
 
 	btTransform		newCarPos;
 	vec3			initialCarPos;
@@ -48,9 +49,11 @@ public:
 	int				final_min;
 	char*			message;
 	Timer			timer;
+	Timer			LapTimer;
 
 	bool			win = false;
 	bool			lose = false;
+	bool			lapCounted = false;
 
 	mat4x4			initialPosMatrix;
 };

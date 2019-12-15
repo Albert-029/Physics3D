@@ -120,8 +120,9 @@ bool ModulePlayer::Start()
 
 	message = "BEAT THE TIME TRIAL (1:30)";
 
+	timer.Start();
+
 	laps = 0;
-	timer.Stop();
 	
 	return true;
 }
@@ -169,8 +170,43 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -(MAX_ACCELERATION / 2);
 	}
 
+	CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
+	CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
+	
+	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11)
+	{
+		if (lapCounted == false) 
+		{
+			if (laps < 3)
+			{
+				laps++;
+				lapCounted = true;
+				LapTimer.Start();
+			}
+			else if (laps == 3)
+			{
+				timer.Stop();
+
+				if (timer.Read() <= 90000)
+				{
+					win = true;
+				}
+
+				else if (timer.Read() > 90000)
+				{
+					lose = true;
+				}
+			}
+		}
+	}
+
+	if (LapTimer.Read() > 10000) 
+	{
+		lapCounted = false;
+	}
+
 	//win condition
-	if (win == true)
+	if (win == true && lose == false)
 	{
 		App->camera->ChangeCamera(true, false);
 		App->audio->PlayFx(App->audio->winFx, 1);
@@ -179,7 +215,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	//lose condition
-	if (lose == true)
+	if (lose == true && win == false)
 	{
 		App->camera->ChangeCamera(true, false);
 		App->audio->PlayFx(App->audio->loseFx, 1);
@@ -199,7 +235,7 @@ update_status ModulePlayer::Update(float dt)
 	lap_sec -= lap_min * 60;
 
 	char title[200];
-	sprintf_s(title, "%s || Time: %.2i:%.2i", message, lap_min, lap_sec);
+	sprintf_s(title, "%s || Laps: %d || Time: %.2i:%.2i",  message, laps, lap_min, lap_sec);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
