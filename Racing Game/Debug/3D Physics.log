@@ -1,13 +1,2 @@
-﻿  Application.cpp
-c:\users\fcbal\documents\github\physics3d\racing game\application.cpp(12): warning C4316: 'ModulePlayer': object allocated on the heap may not be aligned 16
-  Main.cpp
-  ModuleAudio.cpp
-  ModuleCamera3D.cpp
-  ModuleInput.cpp
-  ModulePhysics3D.cpp
-  ModulePlayer.cpp
-  ModuleRenderer3D.cpp
-  ModuleSceneIntro.cpp
-  ModuleWindow.cpp
-  Generating Code...
+﻿  ModuleSceneIntro.cpp
   3D Physics.vcxproj -> C:\Users\fcbal\Documents\GitHub\Physics3D\Racing Game\Debug\RacingGame.exe

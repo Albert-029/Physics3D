@@ -15,6 +15,11 @@ struct BodySize {
 	float sizeZ;
 };
 
+struct BodyRotation {
+	float angle;
+	vec3 axis_pos;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -26,6 +31,8 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+
+	void CreateWorld();
 
 public:
 
@@ -60,6 +67,15 @@ public:
 	p2DynArray<PhysBody3D*> bodyBuildingsCubes;
 
 private:
+	void	LimitsRender();
+	int		num_limits;
+
 	void	FloorsRender();
 	int		num_floors;
+
+	void	RoadRender();
+	int		num_roads;
+
+	void	BuildingsRender();
+	int		num_buildings;
 };

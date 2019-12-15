@@ -1,25 +1,7 @@
-﻿  Application.cpp
-c:\users\fcbal\documents\github\physics3d\racing game\application.cpp(12): warning C4316: 'ModulePlayer': object allocated on the heap may not be aligned 16
-  Main.cpp
-  ModuleAudio.cpp
-  ModuleCamera3D.cpp
-  ModuleInput.cpp
-  ModulePhysics3D.cpp
-  ModulePlayer.cpp
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(25): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(28): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(29): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(31): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(32): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(34): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(35): warning C4305: 'argument': truncation from 'double' to 'float'
-  ModuleRenderer3D.cpp
-  ModuleSceneIntro.cpp
-  ModuleWindow.cpp
+﻿  PhysVehicle3D.cpp
   Generating code
-  28 of 444 functions ( 6.3%) were compiled, the rest were copied from previous compilation.
+  0 of 440 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   3D Physics.vcxproj -> C:\Users\fcbal\Documents\GitHub\Physics3D\Racing Game\Release\RacingGame.exe
