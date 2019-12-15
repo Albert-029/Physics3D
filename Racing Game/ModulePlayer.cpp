@@ -34,13 +34,13 @@ bool ModulePlayer::Start()
 	car.top_chassis.Set(2.1, 0.5, 2.7);
 	car.top_chassis_offset.Set(0, 2.2, -0.2);
 
-	car.mass = 1000.0f;
+	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 5.0f;
 	car.suspensionDamping = 10.0f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
-	car.maxSuspensionForce = 4000.0f;
+	car.maxSuspensionForce = 2000.0f;
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
@@ -118,6 +118,8 @@ bool ModulePlayer::Start()
 
 	vehicle->SetTransform(initialPosMatrix.M);
 
+	message = "BEAT THE TIME TRIAL (1:30)";
+
 	laps = 0;
 	timer.Stop();
 	
@@ -137,6 +139,11 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	{
+		App->audio->PlayFx(App->audio->accelerateFx);
+	}
+	
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
@@ -162,34 +169,23 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -(MAX_ACCELERATION / 2);
 	}
 
-	////win condition
-	//if (win == true)
-	//{
-	//	checkpoint1 = false;
-	//	App->camera->ChangeCamera(true, false);
-	//	App->audio->PlayFx(App->audio->winFx, 1);
-	//	message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
-	//	timer.Stop();
-	//	if (CarPosZ > 40 && CarPosZ < 41)
-	//	{
-	//		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
-	//		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
-	//	}
-	//}
+	//win condition
+	if (win == true)
+	{
+		App->camera->ChangeCamera(true, false);
+		App->audio->PlayFx(App->audio->winFx, 1);
+		message = "GREAT JOB";
+		timer.Stop();
+	}
 
-	////lose condition
-	//if (lose == true)
-	//{
-	//	App->camera->ChangeCamera(true, false);
-	//	App->audio->PlayFx(App->audio->loseFx, 1);
-	//	message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'";
-	//	timer.Stop();
-	//	if (CarPosZ > 40 && CarPosZ < 41)
-	//	{
-	//		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
-	//		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
-	//	}
-	//}
+	//lose condition
+	if (lose == true)
+	{
+		App->camera->ChangeCamera(true, false);
+		App->audio->PlayFx(App->audio->loseFx, 1);
+		message = "YOU FAILED";
+		timer.Stop();
+	}
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -198,8 +194,12 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 	CameraToPlayer();
 
-	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	int lap_sec = timer.Read() / 1000;
+	int lap_min = lap_sec / 60;
+	lap_sec -= lap_min * 60;
+
+	char title[200];
+	sprintf_s(title, "%s || Time: %.2i:%.2i", message, lap_min, lap_sec);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -243,79 +243,4 @@ void ModulePlayer::Respawn(vec3 respawn_pos)
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 
-}
-
-void ModulePlayer::ChooseMatrix(int num)
-{
-	if (num == 1)
-	{
-		checkpoint1Matrix = mat4x4
-		(1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			380, 2, 25, 0);
-
-		vehicle->SetTransform(checkpoint1Matrix.M);
-	}
-
-	else if (num == 2)
-	{
-		checkpoint2Matrix = mat4x4
-		(1, 0, 180, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			182, 2, -65, 0);
-
-		vehicle->SetTransform(checkpoint2Matrix.M);
-	}
-	else if (num == 3)
-	{
-		checkpoint3Matrix = mat4x4
-		(1, 0, 4, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			-205, 2, -117, 0);
-
-		vehicle->SetTransform(checkpoint3Matrix.M);
-	}
-	else if (num == 4)
-	{
-		checkpoint4Matrix = mat4x4
-		(1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			-260, 2, 270, 0);
-
-		vehicle->SetTransform(checkpoint4Matrix.M);
-	}
-	else if (num == 5)
-	{
-		checkpoint5Matrix = mat4x4
-		(1, 0, 0, 0,
-			0, 1, 0, 0,
-			4, 0, 1, 0,
-			264, 2, 107, 0);
-
-		vehicle->SetTransform(checkpoint5Matrix.M);
-	}
-	else if (num == 6)
-	{
-		checkpoint6Matrix = mat4x4
-		(1, 0, 180, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			317, 2, -225, 0);
-
-		vehicle->SetTransform(checkpoint6Matrix.M);
-	}
-	else if (num == 7)
-	{
-		checkpoint7Matrix = mat4x4
-		(1, 0, 0, 0,
-			0, 1, 0, 0,
-			4, 0, 1, 0,
-			-150, 2, -263, 0);
-
-		vehicle->SetTransform(checkpoint7Matrix.M);
-	}
 }

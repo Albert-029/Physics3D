@@ -46,7 +46,11 @@ public:
 	int				lap_min;
 	int				final_sec;
 	int				final_min;
+	char*			message;
 	Timer			timer;
+
+	bool			win = false;
+	bool			lose = false;
 
 	mat4x4			initialPosMatrix;
 };

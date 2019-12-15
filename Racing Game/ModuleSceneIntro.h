@@ -36,6 +36,12 @@ public:
 
 public:
 
+	SDL_Rect timer, time_left;
+	SDL_Texture* graphics = nullptr;
+	int time_toMove = 2000;
+
+	Timer clock;
+
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
 

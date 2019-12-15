@@ -1,3 +1,10 @@
-﻿  ModuleSceneIntro.cpp
-c:\users\fcbal\documents\github\physics3d\racing game\modulesceneintro.cpp(131): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  ModulePlayer.cpp
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(25): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(28): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(29): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(31): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(32): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(34): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\fcbal\documents\github\physics3d\racing game\moduleplayer.cpp(35): warning C4305: 'argument': truncation from 'double' to 'float'
   3D Physics.vcxproj -> C:\Users\fcbal\Documents\GitHub\Physics3D\Racing Game\Debug\RacingGame.exe
