@@ -52,15 +52,13 @@ Copyright (c) [2019] [Albert Robles]
 
 Under the MIT License.
 
-All rights reserved to the developers and publishers of the original release (Tomás Carreras, Enric-G. Durán, Marc Garcia, Núria Lamonja, Alex Lopez, Raul Morente, Albert Robles). 
+All rights reserved to the developers and publishers of the original release Albert Robles. 
 The aim of this project (link to the github project can be found above) and respectively wiki is only educational. 
 
 The content can only be used for non-commercial purposes. 
 
 The copyright of the music and art is used for non-commercial projects and educational purposes.
 In case you want to use it for other cases please do contact their rightful owners.
-
-If you want to use this integrator or its content please do ask beforehand (email: needlesslord@gmail.com).
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
