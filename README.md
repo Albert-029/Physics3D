@@ -1,8 +1,10 @@
 ***
 
+RACING GAME
 
+## Goal
 
-## Goals
+The goal of the game is beating the time trial. You have 1:30 minutes to complete 3 laps on the circuit. Good luck!
 
 ## Team members:
 
@@ -31,7 +33,12 @@ Instructions can be found in this same web page or in the readme.md file include
 
 	CONTROLS:
 
-	WASD 
+	Basic Movement Keys:
+
+	W Key: Throttle / Accelerate
+	S Key: Brake
+	A Key: Turn Left
+	D Key: Turn Right
 
 ***
 
@@ -40,7 +47,7 @@ Instructions can be found in this same web page or in the readme.md file include
 ## Links
 
 
-[Github](https://github.com/Needlesslord/Physics2theory): https://github.com/Albertito029/Physics3D
+[Github] https://github.com/Albertito029/Physics3D
 
 ***
 
