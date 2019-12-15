@@ -40,12 +40,13 @@ public:
 	vec3			newCameraPos;
 	vec3			viewCar;
 
+	int				laps = 0;
+	int				laps_time = 0;
+	int				lap_sec;
+	int				lap_min;
+	int				final_sec;
+	int				final_min;
+	Timer			timer;
+
 	mat4x4			initialPosMatrix;
-	mat4x4			checkpoint1Matrix;
-	mat4x4			checkpoint2Matrix;
-	mat4x4			checkpoint3Matrix;
-	mat4x4			checkpoint4Matrix;
-	mat4x4			checkpoint5Matrix;
-	mat4x4			checkpoint6Matrix;
-	mat4x4			checkpoint7Matrix;
 };

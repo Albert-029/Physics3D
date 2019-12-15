@@ -36,8 +36,8 @@ bool ModulePlayer::Start()
 
 	car.mass = 1000.0f;
 	car.suspensionStiffness = 15.88f;
-	car.suspensionCompression = 0.83f;
-	car.suspensionDamping = 0.88f;
+	car.suspensionCompression = 5.0f;
+	car.suspensionDamping = 10.0f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 4000.0f;
@@ -117,6 +117,9 @@ bool ModulePlayer::Start()
 		380, 2, -10, 0);
 
 	vehicle->SetTransform(initialPosMatrix.M);
+
+	laps = 0;
+	timer.Stop();
 	
 	return true;
 }

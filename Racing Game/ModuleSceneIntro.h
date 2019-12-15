@@ -57,14 +57,8 @@ public:
 	p2DynArray<Cube*> RoadCubes;
 	p2DynArray<PhysBody3D*> bodyRoadCubes;
 
-	p2DynArray<Cube*> DetailsCubes;
-	p2DynArray<PhysBody3D*> bodyDetailsCubes;
-
-	p2DynArray<Cube*> PeopleCubes;
-	p2DynArray<PhysBody3D*> bodyPeopleCubes;
-
-	p2DynArray<Cube*> BuildingsCubes;
-	p2DynArray<PhysBody3D*> bodyBuildingsCubes;
+	p2DynArray<Cube*> FinishCubes;
+	p2DynArray<PhysBody3D*> bodyFinishCubes;
 
 private:
 	void	LimitsRender();
@@ -76,6 +70,6 @@ private:
 	void	RoadRender();
 	int		num_roads;
 
-	void	BuildingsRender();
-	int		num_buildings;
+	void	FinishRender();
+	int		num_finish;
 };
