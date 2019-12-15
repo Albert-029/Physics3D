@@ -20,16 +20,27 @@ bool ModulePlayer::Start()
 
 	VehicleInfo car;
 
-	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 2, 4);
-	car.chassis_offset.Set(0, 1.5, 0);
-	car.mass = 500.0f;
+	//// Car properties ----------------------------------------
+	
+	car.chassis_size.Set(2, 0.8, 6);
+	car.chassis_offset.Set(0, 1.45, 0);
+
+	car.upper_chassis.Set(2, 0.8, 4);
+	car.upper_chassis_offset.Set(0, 2.2, -0.2);
+
+	car.upper_chassis2.Set(1.7, 0.6, 0.1);
+	car.upper_chassis2_offset.Set(0, 2.2, -2.2);
+
+	car.top_chassis.Set(2.1, 0.5, 2.7);
+	car.top_chassis_offset.Set(0, 2.2, -0.2);
+
+	car.mass = 1000.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
-	car.maxSuspensionForce = 6000.0f;
+	car.maxSuspensionForce = 4000.0f;
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
@@ -97,7 +108,15 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(INITIAL_POS);
+
+	initialPosMatrix = mat4x4
+	(1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		380, 2, -10, 0);
+
+	vehicle->SetTransform(initialPosMatrix.M);
 	
 	return true;
 }
@@ -140,11 +159,41 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -(MAX_ACCELERATION / 2);
 	}
 
+	////win condition
+	//if (win == true)
+	//{
+	//	checkpoint1 = false;
+	//	App->camera->ChangeCamera(true, false);
+	//	App->audio->PlayFx(App->audio->winFx, 1);
+	//	message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
+	//	timer.Stop();
+	//	if (CarPosZ > 40 && CarPosZ < 41)
+	//	{
+	//		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+	//		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+	//	}
+	//}
+
+	////lose condition
+	//if (lose == true)
+	//{
+	//	App->camera->ChangeCamera(true, false);
+	//	App->audio->PlayFx(App->audio->loseFx, 1);
+	//	message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'";
+	//	timer.Stop();
+	//	if (CarPosZ > 40 && CarPosZ < 41)
+	//	{
+	//		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+	//		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+	//	}
+	//}
+
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 
 	vehicle->Render();
+	CameraToPlayer();
 
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());

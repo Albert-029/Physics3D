@@ -27,6 +27,18 @@ struct Color
 
 extern Color Red;
 extern Color Green;
+extern Color Yellow;
 extern Color Blue;
 extern Color Black;
 extern Color White;
+extern Color Grey;
+extern Color Grey2;
+extern Color Brown;
+extern Color DarkBrown;
+extern Color Blue2;
+extern Color Skin;
+extern Color Skin2;
+extern Color DarkBlue;
+extern Color Grey3;
+extern Color Green2;
+extern Color DarkOrange;
